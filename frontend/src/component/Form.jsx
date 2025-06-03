@@ -28,17 +28,25 @@ const Form = ()=> {
 
         setIsLoading(true);
         setError("");
-        
-        try {
+          try {
+            console.log('Attempting to connect to:', import.meta.env.VITE_API_URL);
             const response = await axios.get(`${import.meta.env.VITE_API_URL}/login?username=${username}&passwd=${passwd}`);
-            const data = response.data;            if (data.success) {
+            console.log('Response:', response);
+            const data = response.data;
+            if (data.success) {
                 localStorage.setItem('user', JSON.stringify(data.user));
                 navigate('/dashboard');
             } else {
                 setError(data.message || "Invalid credentials");
             }
         } catch (err) {
-            setError("An error occurred. Please try again.");
+            console.error("Login error details:", {
+                message: err.message,
+                response: err.response?.data,
+                status: err.response?.status,
+                url: err.config?.url
+            });
+            setError(`Error: ${err.response?.data?.message || err.message || "An error occurred. Please try again."}`);
             console.error("Login error:", err);
         } finally {
             setIsLoading(false);
