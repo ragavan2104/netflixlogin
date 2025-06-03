@@ -1,13 +1,24 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-app.use(cors());
+
+// CORS configuration
+app.use(cors({
+    origin: ['http://localhost:5173', 'https://netflix-clone-rose-three.vercel.app'],
+    methods: ['GET', 'POST'],
+    credentials: true
+}));
 
 // Mock user database
 const mockUsers = [
     { username: "ragavan", password: "123", name: "Ragavan" },
     { username: "admin", password: "admin123", name: "Admin User" }
 ];
+
+// Add a root route for testing
+app.get("/", (req, res) => {
+    res.json({ message: "Backend server is running" });
+});
 
 app.get("/login", function(req, res) {
     const { username, passwd } = req.query;
