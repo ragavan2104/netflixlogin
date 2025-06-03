@@ -146,7 +146,7 @@ The backend is configured for Vercel deployment with `vercel.json`.
 Create `.env.development` and `.env.production` files:
 ```env
 VITE_API_URL=http://localhost:5000  # Development
-VITE_API_URL=https://your-backend-url.vercel.app  # Production
+VITE_API_URL=https://netflixlogin-pia64r3jf-raagavans-projects.vercel.app  # Production
 ```
 
 ## 📱 Screenshots
