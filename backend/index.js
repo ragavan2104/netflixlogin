@@ -4,7 +4,7 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://netflix-clone-rose-three.vercel.app'],
+    origin: '*', // Allow all origins in development
     methods: ['GET', 'POST'],
     credentials: true
 }));
